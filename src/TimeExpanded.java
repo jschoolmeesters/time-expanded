@@ -23,32 +23,17 @@ public class TimeExpanded {
     }
 
     void addSourceAndSinkTimeExpandedGraph() {
-        timeExpandedGraph.add(new ArrayList<>()); // Store source and sink at time T+1
-
-        Node<TimeExpandedEdge> source = new Node<>(0, T+1);
         int c1 = 2;
         for (int t = 0; t <= T; t++) {
             TimeExpandedEdge edge = new TimeExpandedEdge(0,c1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, t);
-            source.edges.add(edge);
             edgesExtra.add(edge);
-            //Edge edgeBasic = new Edge(0,c1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0);
-            //edges.add(edgeBasic);
-
             c1 += numOfNodes;
         }
-        timeExpandedGraph.get(T+1).add(source);
 
-        Node<TimeExpandedEdge> sink = new Node<>(numOfNodes-1, T+1);
-        timeExpandedGraph.get(T+1).add(sink);
         int c2 = numOfNodes + 1;
         for (int t = 0; t <= T; t++) {
             TimeExpandedEdge edge = new TimeExpandedEdge(c2,1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, T+1);
-            timeExpandedGraph.get(T).get(numOfNodes-1).edges.add(edge);
             edgesExtra.add(edge);
-
-            //Edge edgeBasic = new Edge(c2,1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0);
-            //edges.add(edgeBasic);
-
             c2 += numOfNodes;
         }
     }
@@ -56,9 +41,6 @@ public class TimeExpanded {
     void fillCostAndCapacityArrays() {
         for (Edge e: edges) {
             for (int t = 0; t <= T - e.cost; t++) {
-                //TimeExpandedEdge edge = new TimeExpandedEdge(e, t + e.cost);
-                //timeExpandedGraph.get(t).get(e.u).edges.add(edge);
-
                 int idFrom = timeExpandedGraph.get(t).get(e.u).id;
                 int idTo = timeExpandedGraph.get(t+e.cost).get(e.v).id;
                 capacity[idFrom][idTo] = e.capacity;
