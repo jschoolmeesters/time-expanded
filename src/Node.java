@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Node<T> {
     int id, t;
-    List<T> edges;
+    List<T> edges = new ArrayList<T>();
 
     public Node() {
 
@@ -11,13 +11,13 @@ public class Node<T> {
     public Node(int id, int t) {
         this.id = id;
         this.t = t;
-        edges = new ArrayList<>();
+        edges = new ArrayList<T>();
     }
 
     public Node(int id) {
         this.id = id;
         this.t = -1;
-        edges = new ArrayList<>();
+        edges = new ArrayList<T>();
     }
 
     public Node(int id, T e) {
