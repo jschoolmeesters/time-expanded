@@ -1,7 +1,7 @@
-public class Main {
+public class aaaMain {
 	public static void main(String[] args) {
 		TimeExpanded timeExpanded = new TimeExpanded();
-		timeExpanded.run();
+		System.out.print(timeExpanded.run());
 	}
 }
 

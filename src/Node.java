@@ -5,24 +5,9 @@ public class Node<T> {
     int id, t;
     List<T> edges = new ArrayList<T>();
 
-    public Node() {
-
-    }
     public Node(int id, int t) {
         this.id = id;
         this.t = t;
         edges = new ArrayList<T>();
-    }
-
-    public Node(int id) {
-        this.id = id;
-        this.t = -1;
-        edges = new ArrayList<T>();
-    }
-
-    public Node(int id, T e) {
-        this.id = id;
-        this.edges = new ArrayList<>();
-        this.edges.add(e);
     }
 }

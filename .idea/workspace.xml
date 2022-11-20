@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64f7aa44-0a9a-4fc9-8946-d868c53a0384" name="Changes" comment="Init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aaaMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MinCostMaxFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MinCostMaxFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TimeExpanded.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeExpanded.java" afterDir="false" />
     </list>
@@ -44,8 +44,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="aaaMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="aaaMain" />
       <module name="time-expanded" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -53,7 +53,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.aaaMain" />
       </list>
     </recent_temporary>
   </component>
@@ -87,7 +87,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668954880214</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Init">
+      <created>1668980793191</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668980793191</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Init">
+      <created>1668981029357</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668981029357</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,15 +120,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Init" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TimeExpanded.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Node" memberName="edges" />

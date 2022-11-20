@@ -12,13 +12,13 @@ public class TimeExpanded {
     int[][] capacity;
     int[][] cost;
 
-    public void run() {
+    public int run() {
         init();
         initTimeExpandedGraph();
         addSourceAndSinkTimeExpandedGraph();
         fillCostAndCapacityArrays();
         int result = MinCostMaxFlow.minCostMaxFlow(capacity, cost, 0, 1, numOfNodesTimeExpanded);
-        int a = result;
+        return result;
 
     }
 
