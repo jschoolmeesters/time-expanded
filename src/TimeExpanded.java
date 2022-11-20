@@ -4,41 +4,70 @@ import java.util.Scanner;
 
 public class TimeExpanded {
     List<Edge> edges = new ArrayList<>();
+    List<Edge>[] edgesNew;
+    List<TimeExpandedEdge> edgesExtra = new ArrayList<>();
     ArrayList<List<Node<TimeExpandedEdge>>> timeExpandedGraph;
-    int T, numOfNodes, numOfEdges;
+    int T, numOfNodes, numOfEdges, numOfNodesTimeExpanded;
+
+    int[][] capacity;
+    int[][] cost;
 
     public void run() {
         init();
         initTimeExpandedGraph();
-        setEdgesTimeExpandedGraph();
         addSourceAndSinkTimeExpandedGraph();
+        fillCostAndCapacityArrays();
+        int result = MinCostMaxFlow.minCostMaxFlow(capacity, cost, 0, 1, numOfNodesTimeExpanded);
+        int a = result;
+
     }
 
     void addSourceAndSinkTimeExpandedGraph() {
         timeExpandedGraph.add(new ArrayList<>()); // Store source and sink at time T+1
 
         Node<TimeExpandedEdge> source = new Node<>(0, T+1);
+        int c1 = 2;
         for (int t = 0; t <= T; t++) {
-            TimeExpandedEdge edge = new TimeExpandedEdge(0,0, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, t);
+            TimeExpandedEdge edge = new TimeExpandedEdge(0,c1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, t);
             source.edges.add(edge);
+            edgesExtra.add(edge);
+            //Edge edgeBasic = new Edge(0,c1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0);
+            //edges.add(edgeBasic);
+
+            c1 += numOfNodes;
         }
         timeExpandedGraph.get(T+1).add(source);
 
         Node<TimeExpandedEdge> sink = new Node<>(numOfNodes-1, T+1);
         timeExpandedGraph.get(T+1).add(sink);
-
-        TimeExpandedEdge edge = new TimeExpandedEdge(numOfNodes-1,numOfNodes, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, T+1);
+        int c2 = numOfNodes + 1;
         for (int t = 0; t <= T; t++) {
+            TimeExpandedEdge edge = new TimeExpandedEdge(c2,1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0, T+1);
             timeExpandedGraph.get(T).get(numOfNodes-1).edges.add(edge);
+            edgesExtra.add(edge);
+
+            //Edge edgeBasic = new Edge(c2,1, Integer.MAX_VALUE, Integer.MAX_VALUE, 0);
+            //edges.add(edgeBasic);
+
+            c2 += numOfNodes;
         }
     }
 
-    void setEdgesTimeExpandedGraph() {
+    void fillCostAndCapacityArrays() {
         for (Edge e: edges) {
             for (int t = 0; t <= T - e.cost; t++) {
-                TimeExpandedEdge edge = new TimeExpandedEdge(e, t + e.cost);
-                timeExpandedGraph.get(t).get(e.u).edges.add(edge);
+                //TimeExpandedEdge edge = new TimeExpandedEdge(e, t + e.cost);
+                //timeExpandedGraph.get(t).get(e.u).edges.add(edge);
+
+                int idFrom = timeExpandedGraph.get(t).get(e.u).id;
+                int idTo = timeExpandedGraph.get(t+e.cost).get(e.v).id;
+                capacity[idFrom][idTo] = e.capacity;
+                cost[idFrom][idTo] = e.cost;
             }
+        }
+        for (TimeExpandedEdge e: edgesExtra) {
+            capacity[e.u][e.v] = e.capacity;
+            cost[e.u][e.v] = e.cost;
         }
     }
 
@@ -46,12 +75,13 @@ public class TimeExpanded {
         // For every edge
         // Add the nodes of that edge and the edge itself
         // Only add th edge itself if T allows it
-
+        int id = 2;
         for (int t = 0; t <= T; t++) {
             timeExpandedGraph.add(new ArrayList<>());
             for (int i = 0; i < numOfNodes; i++) {
-                Node<TimeExpandedEdge> n = new Node<>(i, t);
+                Node<TimeExpandedEdge> n = new Node<>(id, t);
                 timeExpandedGraph.get(t).add(n);
+                id++;
             }
         }
     }
@@ -63,6 +93,9 @@ public class TimeExpanded {
         numOfEdges = scanner.nextInt();
         T = scanner.nextInt();
         timeExpandedGraph = new ArrayList<>();
+        numOfNodesTimeExpanded = (T+1)*numOfNodes+2;
+        capacity = new int[numOfNodesTimeExpanded][numOfNodesTimeExpanded];
+        cost = new int[numOfNodesTimeExpanded][numOfNodesTimeExpanded];
 
         // Build the graph.
         for (int i = 0; i < numOfEdges; i++) {
@@ -79,7 +112,7 @@ public class TimeExpanded {
             e.setReverse(r);
             r.setReverse(e);
             edges.add(e);
-            //graph[v].edges.add(r);
+            //edgesNew[u].add(e);
         }
         scanner.close();
     }

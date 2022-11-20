@@ -1,5 +1,5 @@
 public class Edge {
-    int u, v, flow, capacity, cost, atTime;
+    int u, v, flow, capacity, cost, parent;
     Edge reverse;
 
     public Edge (int u, int v, int flow, int capacity, int cost) {
