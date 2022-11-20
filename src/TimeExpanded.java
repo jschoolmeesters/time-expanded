@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class TimeExpanded {
     List<Edge> edges = new ArrayList<>();
-    List<Edge>[] edgesNew;
     List<TimeExpandedEdge> edgesExtra = new ArrayList<>();
     ArrayList<List<Node<TimeExpandedEdge>>> timeExpandedGraph;
     int T, numOfNodes, numOfEdges, numOfNodesTimeExpanded;
-
     int[][] capacity;
     int[][] cost;
 
@@ -87,14 +85,10 @@ public class TimeExpanded {
             int cost = scanner.nextInt();
             int capacity = scanner.nextInt();
 
-            // Set pointer from each edge "a" to
-            // its reverse edge "b" and vice versa.
             Edge e = new Edge(u, v, 0, capacity, cost);
             Edge r = new Edge(v, u, 0, capacity, -cost);
             e.setReverse(r);
-            r.setReverse(e);
             edges.add(e);
-            //edgesNew[u].add(e);
         }
         scanner.close();
     }
